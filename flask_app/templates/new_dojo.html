@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>New Dojo</title>
+</head>
+<body>
+    <form class="form-control" action="/create_dojo" method="POST">
+        <label class="/create_dojo" for="nDojo">Name</label>
+        <input class="form-control" type="text" name="nDojo" id="nDojo" placeholder="New Dojo" required>
+        <input class="form-control btn btn-primary" type="submit" name="submitnDojo" id="submitnDojo" value="Create">
+    </form>
+    <h1 style="text-align: center;" >All Dojos</h1>
+    <div class="form-control d-flex justify-content-center" id="dojos">
+        {%for dojo in dojos%}
+        <div>
+            <a class="align-items-center btn btn-primary shadow" href="/show_dojo/{{dojo.id}}">{{dojo.name}}</a>
+            <form action="/delete_dojo/{{dojo.id}}" method="POST">
+                <button class="col btn btn-danger shadow" onclick="warning()" >DELETE Dojo</button>
+            </form>
+        </div>
+        {%endfor%}
+    </div>
+    <div class="d-flex justify-content-center">
+        <a class="shadow btn btn-dark" href="/add_ninja">Add Ninja</a>
+    </div>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>
